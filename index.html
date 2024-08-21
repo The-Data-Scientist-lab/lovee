@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are You Angry?</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom right, #ffb6c1, #cce7ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Cursive', sans-serif;
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 700px;
+            position: relative;
+            animation: fadeIn 2s ease-out;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #ff69b4;
+            animation: slideIn 1.5s ease-out;
+        }
+        .gif-container {
+            margin: 20px 0;
+        }
+        .gif-container img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+        }
+        button {
+            margin: 15px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            outline: none;
+            transition: background-color 0.3s, transform 0.3s;
+            color: #fff;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #yes {
+            background-color: #ff69b4; /* Pink */
+        }
+        #no {
+            background-color: #1e90ff; /* Blue */
+        }
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s;
+        }
+        .popup {
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            width: 80%;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+        .popup h2 {
+            font-size: 2em;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+        .popup-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="content">
+        <h1>Hey Muskan, Gussa Ho Kya Baby?</h1>
+        <div class="gif-container">
+            <img src="https://gifdb.com/images/thumbnail/cute-sad-bubu-dudu-panda-kick-4cn5usy9xip1m59y.gif" alt="Angry GIF">
+        </div>
+        <button id="yes">Yes</button>
+        <button id="no" onclick="noClicked()">No</button>
+    </div>
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <h2>Okay baby, come to WhatsApp, I have something special for you!</h2>
+        </div>
+    </div>
+
+    <script>
+        const popupOverlay = document.getElementById('popupOverlay');
+
+        function noClicked() {
+            popupOverlay.classList.add('active');
+            setTimeout(function() {
+                redirectToWhatsApp();
+            }, 2000); // Delay for 2 seconds before redirecting
+        }
+
+        function redirectToWhatsApp() {
+            window.location.href = 'https://wa.me/1234567890'; // Change the phone number here
+        }
+
+        document.getElementById('yes').addEventListener('click', function() {
+            document.getElementById('content').innerHTML = `
+                <h1>Jyada gussa ho kya?</h1>
+                <div class="gif-container">
+                    <img src="https://media.tenor.com/HZkpmoJmsSoAAAAi/bubu-dudu.gif"More Angry GIF">
+                </div>
+                <button style="background-color: #ff69b4;" onclick="nextQuestion()">Yes</button>
+                <button style="background-color: #1e90ff;" onclick="noClicked()">No</button>
+            `;
+        });
+
+        function nextQuestion() {
+            document.getElementById('content').innerHTML = `
+                <h1>Kuch jyada hi gusse mein ho baby, lagta hai?</h1>
+                <div class="gif-container">
+                    <img src="https://i.pinimg.com/originals/4e/73/e3/4e73e395a0e9128d2844b5d1a9d9c3aa.gif" alt="Very Angry GIF">
+                </div>
+                <button style="background-color: #ff69b4;" onclick="showFinal()">Yes</button>
+                <button style="background-color: #1e90ff;" onclick="noClicked()">No</button>
+            `;
+        }
+
+        function showFinal() {
+            document.getElementById('content').innerHTML = `
+                <h1>Ok, raho gusse mein... kaun dekh raha hai 😜</h1>
+                <div class="gif-container">
+                    <img src="https://media.tenor.com/D2gu36EpULgAAAAi/bubu-dudu-bubu.gif" alt="Funny GIF">
+                </div>
+                <button style="background-color: #ff69b4;" onclick="finalReveal()">Opps Daant Hi Tut Gye</button>
+            `;
+        }
+
+        function finalReveal() {
+            document.getElementById('content').innerHTML = `
+                <h1>Sorry baby, mazak kar raha tha! I love you so much bacha 💖</h1>
+                <div class="gif-container">
+                    <img src="https://media.tenor.com/HpDpJeMwzQgAAAAM/i-love-you-love.gif" alt="Love GIF">
+                </div>
+                <a href="https://wa.me/1234567890" class="call-me-button" target="_blank">I love you too</a>
+            `;
+        }
+    </script>
+</body>
+</html>
